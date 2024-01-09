@@ -53,5 +53,4 @@ public class User {
 		return ("Name: " + this.name + " Balance: " + this.balance +
 				" Identifier: " + this.identifier);
 	}
-
 }
