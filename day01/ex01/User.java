@@ -1,4 +1,4 @@
-package day01.ex00;
+package day01.ex01;
 
 /**
  * User
@@ -15,6 +15,7 @@ public class User {
 			this.balance = balance;
 		else
 			this.balance = 0;
+		this.identifier = UserIdsGenerator.getInstance().generateId();
 
 	}
 
@@ -24,10 +25,6 @@ public class User {
 
 	public void	setName(String name) {
 		this.name = name;
-	}
-
-	public void	setIdentifier(int identifier) {
-		this.identifier = identifier;
 	}
 
 	public void	setBalance(int balance) {
