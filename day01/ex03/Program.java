@@ -1,6 +1,5 @@
 package day01.ex03;
 
-import java.util.UUID;
 
 import day01.ex03.Transaction.Type;
 
