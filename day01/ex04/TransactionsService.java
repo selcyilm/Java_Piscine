@@ -31,11 +31,11 @@ public class TransactionsService {
 		User		sender = users.retrieveById(senderId);
 		User		recipent = users.retrieveById(recipentId);
 
-		if (amount <= 0 || (amount > 0 && amount < sender.getBalance())) {
+		if (amount <= 0 || (amount > 0 && amount > sender.getBalance())) {
 			throw	new	IllegalTransactionException("Invalid Transaction!");
 		}
-		Transaction tr1 = new Transaction(sender, recipent, Transaction.Type.DEBIT, amount);
-		Transaction tr2 = new Transaction(recipent, sender, Transaction.Type.CREDIT, -amount);
+		Transaction tr1 = new Transaction(sender, recipent, Transaction.Type.DEBIT, -amount);
+		Transaction tr2 = new Transaction(recipent, sender, Transaction.Type.CREDIT, +amount);
 		sender.getTransactionsList().addTransaction(tr2);
 		recipent.getTransactionsList().addTransaction(tr2);
 

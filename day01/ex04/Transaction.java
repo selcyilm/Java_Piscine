@@ -37,6 +37,10 @@ public class Transaction {
 	
 	}
 
+	public Transaction () {
+
+	}
+
 	public UUID	getIdentifier() {
 		return (this.identifier);
 	}

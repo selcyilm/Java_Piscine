@@ -19,14 +19,12 @@ public class Program {
 		System.out.println("Before:");
 		System.out.println("Selçuk's balance: " + user1.getBalance());
 		System.out.println("Bora's balance: " + user2.getBalance());
-		service.performTransaction(user1.getIdentifier(), user2.getIdentifier(), 500);
+		service.performTransaction(user1.getIdentifier(), user2.getIdentifier(), 250);
 		System.out.println("After:");
 		System.out.println("Selçuk's balance: " + user1.getBalance());
 		System.out.println("Bora's balance: " + user2.getBalance());
 
-
-
-		
+		System.out.println("\n===========\n" + service.toString());
 	}
 
 }

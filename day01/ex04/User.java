@@ -12,6 +12,7 @@ public class User {
 
 	public User(String name, int balance) {
 		this.name = name;
+		this.transactionsList = new TransactionsLinkedList();
 		if (balance > 0)
 			this.balance = balance;
 		else
