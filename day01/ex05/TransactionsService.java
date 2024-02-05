@@ -23,7 +23,7 @@ public class TransactionsService {
 	public	int	retrieveBalance(int id, boolean print) {
 		int ret = this.users.retrieveById(id).getBalance();
 		if (print)
-			System.out.println(this.users.retrieveById(id) + "-" + ret);
+			System.out.println(this.users.retrieveById(id).getName() + " - " + ret);
 		return (ret);
 	}
 

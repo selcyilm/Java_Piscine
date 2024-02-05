@@ -21,10 +21,10 @@ public class Program {
 	public	static	void	goDoTheJob(int input, Scanner scanner, Menu menu) {
 		switch (input) {
 			case 1:
-				
+				menu.addUser();
 				break ;
 			case 2:
-
+				menu.viewUserBalance();
 				break ;
 			case 3:
 
@@ -64,6 +64,8 @@ public class Program {
 		menu.printMenu();
 		userInput = setSelect(scanner, exitInput);
 		System.out.printf("User input is %d\n", userInput);
+		goDoTheJob(userInput, scanner, menu);
+		System.out.println("--------------------------------------");
 		}
 		System.out.println("BYE!");
 	}

@@ -30,4 +30,31 @@ public class Menu {
 		System.out.println(++count + ". Finish execution");
 	}
 
+	public	void	addUser() {
+		User	user;
+		String	line;
+		int		balance;
+		String	userName;
+		System.out.println("Enter a name and balance\n->");
+		userName = scanner.next();
+		//scanner.next();
+		balance = scanner.nextInt();
+		line = scanner.nextLine();
+		if (!line.equals(""))
+			throw	new	NonExistingCommandExeption("Invalid Input Type!");
+		user = new User(userName, balance);
+		this.service.addUser(user);
+		System.out.printf("User with id = %d is added\n", user.getIdentifier());
+	}
+
+	public	void	viewUserBalance() {
+		int		id;
+		String	line;
+		System.out.println("Enter a user ID\n->");
+		id = scanner.nextInt();
+		line = scanner.nextLine();
+		if (!line.equals(""))
+			throw	new	NonExistingCommandExeption("Invalid Input!");
+		this.service.retrieveBalance(id, true);
+	}
 }
