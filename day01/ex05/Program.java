@@ -9,7 +9,7 @@ public class Program {
 
 
 	public	static	int	setSelect(Scanner scanner, int exitInput) {
-		System.out.print("-> ");
+		System.out.print("\n-> ");
 		int setSelect = scanner.nextInt();
 		while (setSelect > exitInput || setSelect < 1) {
 			System.err.print("Invalid Input try again!\n-> ");
@@ -27,13 +27,13 @@ public class Program {
 				menu.viewUserBalance();
 				break ;
 			case 3:
-
+				menu.performTransfer();
 				break ;
 			case 4:
-
+				menu.viewTransById();
 				break ;
 			case 5:
-
+				menu.removeTrById();
 				break ;
 			case 6:
 
@@ -48,8 +48,7 @@ public class Program {
 		Scanner	scanner;
 		int		userInput;
 		int		exitInput;
-		int		select;
-		
+
 		scanner = new Scanner(System.in);
 		if (args.length != 0 && args[0].equals("--profile=dev")) {
 			exitInput = 7;

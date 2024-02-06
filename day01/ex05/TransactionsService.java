@@ -47,6 +47,13 @@ public class TransactionsService {
 			return (user.getTransactionsList().toArray());
 	}
 
+	public	Transaction[] getUserTransfer(int id) {
+		User user;
+
+		user = this.users.retrieveById(id);
+		return (user.getTransactionsList().toArray());
+	}
+
 	public	void	deleteTransaction(int userId, UUID id) {
 		User user = users.retrieveById(userId);
 		user.getTransactionsList().removeTransaction(id);
