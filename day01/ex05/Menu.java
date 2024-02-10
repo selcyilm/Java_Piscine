@@ -9,7 +9,6 @@ import day01.ex05.Transaction.Type;
  * Menu
  */
 public class Menu {
-	private	UsersList			users;
 	private	boolean				isDev;
 	private	TransactionsService	service;
 	private	Scanner				scanner;
@@ -129,7 +128,8 @@ public class Menu {
 			transferIdUuid = tr.getIdentifier();
 			if (transferIdStr.equals(transferIdUuid.toString())) {
 				if (tr.getTransferCategory() == Type.DEBIT) {
-					System.out.println("removed!");
+					System.out.println("Transfer To" + tr.getRecipient() + "id=" + tr.getRecipient().getIdentifier()
+					+ " " + tr.getAmount() + " removed!");
 				}
 				else {
 					System.out.println("REMOVED");
@@ -137,5 +137,17 @@ public class Menu {
 				this.service.deleteTransaction(userId, transferIdUuid);
 			}
 		}
+	}
+
+	public	void	checkTransferValidity() {
+		Transaction	trs[];
+		
+		System.out.println("Chack results!");
+		trs = service.validateTransaction();
+
+		if (trs.length == 0)
+			System.out.println("There are't unpaired transaction!");
+		else
+			System.out.println("There are unpaired transaction!!");
 	}
 }

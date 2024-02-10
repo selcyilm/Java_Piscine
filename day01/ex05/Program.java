@@ -7,18 +7,9 @@ import java.util.Scanner;
  */
 public class Program {
 
-
-	public	static	int	setSelect(Scanner scanner, int exitInput) {
-		System.out.print("\n-> ");
-		int setSelect = scanner.nextInt();
-		while (setSelect > exitInput || setSelect < 1) {
-			System.err.print("Invalid Input try again!\n-> ");
-			setSelect = scanner.nextInt();
-		}
-		return (setSelect);
-	}
-
-	public	static	void	goDoTheJob(int input, Scanner scanner, Menu menu) {
+	public	static	void	goDoTheJob(int input, Scanner scanner, Menu menu, int exitInput) {
+		if (input == exitInput)
+			return ;
 		switch (input) {
 			case 1:
 				menu.addUser();
@@ -36,7 +27,7 @@ public class Program {
 				menu.removeTrById();
 				break ;
 			case 6:
-
+				menu.checkTransferValidity();
 				break ;
 			default:
 				break ;
@@ -48,7 +39,10 @@ public class Program {
 		Scanner	scanner;
 		int		userInput;
 		int		exitInput;
+		boolean	passSelection;
+		String	endline;
 
+		userInput = 5;
 		scanner = new Scanner(System.in);
 		if (args.length != 0 && args[0].equals("--profile=dev")) {
 			exitInput = 7;
@@ -59,13 +53,28 @@ public class Program {
 			menu = new Menu(false, scanner);
 		}
 		userInput = 0;
+		passSelection = false;
 		while (userInput != exitInput) {
-		menu.printMenu();
-		userInput = setSelect(scanner, exitInput);
-		System.out.printf("User input is %d\n", userInput);
-		goDoTheJob(userInput, scanner, menu);
-		System.out.println("--------------------------------------");
+			menu.printMenu();
+			try {
+				userInput = scanner.nextInt();
+				passSelection = true;
+				endline = scanner.nextLine();
+				if (endline.length() != 0 || userInput < 1 || userInput > exitInput) {
+					throw	new	NonExistingCommandExeption("Invalid Input!");
+				}
+				goDoTheJob(userInput, scanner, menu, exitInput);
+				System.out.println("-------------------------------------");
+			} catch (Exception e) {
+				System.out.println(e);
+				if (!passSelection) {
+				scanner.nextLine();
+				System.out.println("-------------------------------------");
+				}
+			}
+			passSelection = false;
 		}
+		scanner.close();
 		System.out.println("BYE!");
 	}
 }
