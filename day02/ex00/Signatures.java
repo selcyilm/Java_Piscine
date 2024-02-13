@@ -47,8 +47,9 @@ public class Signatures {
 		}
 		fileInputStream.close();
 	} catch (IOException e) {
-			e.printStackTrace();
-		
+			System.err.println("Fatal error: No such file or directory!");
+			System.exit(1);
+
 		}
 		return (hexs);
 	}
@@ -60,9 +61,7 @@ public class Signatures {
 		try {
 			scanner = new Scanner(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.exit(1);
 		}
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -83,11 +82,21 @@ public class Signatures {
 	}
 
 	public	String	compareMaptoSignature(Map<String, String> signatures, String compare) {
-		String ret = "";
 		for (Map.Entry<String, String> entry: signatures.entrySet()) {
 			if (compare.contains(entry.getValue()))
 				return (entry.getKey());
 		}
 		return (null);
+	}
+
+	public	void	writeToFile(String text) {
+		try {
+			fileOutputStream = new FileOutputStream("day02/ex00/result.txt", true);
+			fileOutputStream.write(text.getBytes());
+			fileOutputStream.write(10);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Invalid File || Invalid write");
+		}
 	}
 }
