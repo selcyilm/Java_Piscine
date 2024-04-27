@@ -1,5 +1,3 @@
-package day02.ex00;
-
 import java.util.Scanner;
 import java.io.File;
 

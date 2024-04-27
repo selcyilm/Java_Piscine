@@ -1,5 +1,3 @@
-package day02.ex00;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
