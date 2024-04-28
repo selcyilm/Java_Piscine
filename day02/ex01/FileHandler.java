@@ -10,6 +10,7 @@ public class FileHandler {
 	FileReader					fileReader;
 	String						fileName;
 	List<String>				wordsList = new ArrayList<>();
+	boolean						isFileEmty;
 
 	/*
 	 * It is a container for taking the file path and initialize the buffered reader and
@@ -28,7 +29,8 @@ public class FileHandler {
 
 	/*
 	 * it basically read the whole file and replace all non word characters into space,
-	 * then splits all the file with space, then add it to its list.
+	 * then splits all the file with space, then add it to its list. Return null if the file is
+	 * emty
 	 */
 	public List<String> getWordList() {
 		File	file;
@@ -38,7 +40,11 @@ public class FileHandler {
 			System.err.println("Error: File is more than 10MB!");
 			System.exit(2);
 		}
-		
+		else if (file.length() == 0) {
+			isFileEmty = true;
+			return (null);
+		}
+
 		String line;
 		try {
 			while ((line = bufferedReader.readLine()) != null) {
