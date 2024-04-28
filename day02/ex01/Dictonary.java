@@ -101,6 +101,21 @@ public class Dictonary {
 		}
 	}
 
+	public double getSimilarity() {
+		double	numerator;
+		double	denominator;
+		double	ret;
+
+		numerator = dotProductOfTwoVector(file1Vector, file2Vector);
+		denominator = productOfMagnitutes(file1Vector, file2Vector);
+		ret = numerator / denominator;
+		if (numerator == -1 || denominator == -1) {
+			System.err.println("Error: check your vector size cos it's not the same yo!");
+			System.exit(6);
+		}
+		return (ret);
+	}
+
 	/*
 	 * takes word and it returns how many times that 'word' was in the list
 	 * return 0 if the list is emty
@@ -118,6 +133,54 @@ public class Dictonary {
 				ret++;
 			i++;
 		}
+		return (ret);
+	}
+
+	/*
+	 * takes two vector as an argument and it calculates and returns the dot product of two,
+	 * two vector must be same size, returns -1 if the sizes is different
+	 */
+	private int	dotProductOfTwoVector(Vector<Integer> first, Vector<Integer> second) {
+		if (first.size() != second.size())
+			return (-1);
+
+		int	i;
+		int	sum;
+
+		sum = 0;
+		i = 0;
+		while (i < first.size()) {
+			sum += first.get(i) * second.get(i);
+			i++;
+		}
+		return (sum);
+	}
+
+	/*
+	 * The magnitudes of vectors A and B are calculated using the Euclidean norm,
+	 * also known as the magnitude or length of a vector. To find the magnitude,
+	 * you square each element of the vector, sum them up, and then take the 
+	 * square root of the sum. So it returns the product of it. Both vectors
+	 * must have same size, returns -1 if they are not zZz
+	 */
+	private double	productOfMagnitutes(Vector<Integer> first, Vector<Integer> second) {
+		if (first.size() != second.size())
+			return (-1);
+		
+		int		i;
+		int		sumFirst;
+		int		sumSecond;
+		double	ret;
+
+		sumFirst = 0;
+		sumSecond = 0;
+		i = 0;
+		while (i < first.size()) {
+			sumFirst += Math.pow(first.get(i), 2);
+			sumSecond += Math.pow(second.get(i), 2);
+			i++;
+		}
+		ret = Math.sqrt(sumFirst) * Math.sqrt(sumSecond);
 		return (ret);
 	}
 }
