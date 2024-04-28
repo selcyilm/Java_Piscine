@@ -28,6 +28,8 @@ public class Program {
 
 			System.out.println("Vector File1: " + dictonary.file1Vector);
 			System.out.println("Vector File2: " + dictonary.file2Vector);
+
+			dictonary.createFileDict();
 		}
 		else {
 			System.err.println("Error: invalid Input size!");
